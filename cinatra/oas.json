@@ -1,0 +1,215 @@
+{
+  "agentspec_version": "26.1.0",
+  "component_type": "Flow",
+  "id": "@cinatra-ai/author-agent",
+  "name": "Author Agent",
+  "description": "Author a Cinatra agent extension package from a creation spec. Uses the agent-authoring skill and emits a typed draft artifact.",
+  "metadata": {
+    "cinatra": {
+      "type": "node",
+      "packageName": "@cinatra-ai/author-agent",
+      "packageVersion": "0.1.3"
+    }
+  },
+  "inputs": [
+    {
+      "title": "agent_run_id",
+      "type": "string"
+    },
+    {
+      "title": "packageSlug",
+      "type": "string"
+    },
+    {
+      "title": "spec",
+      "type": "string"
+    }
+  ],
+  "outputs": [
+    {
+      "title": "draft",
+      "type": "string"
+    }
+  ],
+  "start_node": {
+    "$component_ref": "start"
+  },
+  "nodes": [
+    {
+      "$component_ref": "start"
+    },
+    {
+      "$component_ref": "author"
+    },
+    {
+      "$component_ref": "end"
+    }
+  ],
+  "control_flow_connections": [
+    {
+      "component_type": "ControlFlowEdge",
+      "name": "start_to_author",
+      "from_node": {
+        "$component_ref": "start"
+      },
+      "to_node": {
+        "$component_ref": "author"
+      }
+    },
+    {
+      "component_type": "ControlFlowEdge",
+      "name": "author_to_end",
+      "from_node": {
+        "$component_ref": "author"
+      },
+      "to_node": {
+        "$component_ref": "end"
+      }
+    }
+  ],
+  "data_flow_connections": [
+    {
+      "component_type": "DataFlowEdge",
+      "name": "start_to_author_agent_run_id",
+      "source_node": {
+        "$component_ref": "start"
+      },
+      "source_output": "agent_run_id",
+      "destination_node": {
+        "$component_ref": "author"
+      },
+      "destination_input": "agent_run_id"
+    },
+    {
+      "component_type": "DataFlowEdge",
+      "name": "start_to_author_packageSlug",
+      "source_node": {
+        "$component_ref": "start"
+      },
+      "source_output": "packageSlug",
+      "destination_node": {
+        "$component_ref": "author"
+      },
+      "destination_input": "packageSlug"
+    },
+    {
+      "component_type": "DataFlowEdge",
+      "name": "start_to_author_spec",
+      "source_node": {
+        "$component_ref": "start"
+      },
+      "source_output": "spec",
+      "destination_node": {
+        "$component_ref": "author"
+      },
+      "destination_input": "spec"
+    },
+    {
+      "component_type": "DataFlowEdge",
+      "name": "author_to_end_draft",
+      "source_node": {
+        "$component_ref": "author"
+      },
+      "source_output": "draft",
+      "destination_node": {
+        "$component_ref": "end"
+      },
+      "destination_input": "draft"
+    }
+  ],
+  "$referenced_components": {
+    "start": {
+      "component_type": "StartNode",
+      "id": "start",
+      "name": "Inputs",
+      "metadata": {
+        "cinatra": {
+          "required": [
+            "spec"
+          ],
+          "hidden": [
+            "agent_run_id",
+            "packageSlug"
+          ]
+        }
+      },
+      "inputs": [
+        {
+          "title": "agent_run_id",
+          "type": "string"
+        },
+        {
+          "title": "packageSlug",
+          "type": "string"
+        },
+        {
+          "title": "spec",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "title": "agent_run_id",
+          "type": "string"
+        },
+        {
+          "title": "packageSlug",
+          "type": "string"
+        },
+        {
+          "title": "spec",
+          "type": "string"
+        }
+      ]
+    },
+    "author": {
+      "component_type": "ApiNode",
+      "id": "author",
+      "name": "Author the agent draft",
+      "inputs": [
+        {
+          "title": "agent_run_id",
+          "type": "string",
+          "default": ""
+        },
+        {
+          "title": "packageSlug",
+          "type": "string"
+        },
+        {
+          "title": "spec",
+          "type": "string"
+        }
+      ],
+      "outputs": [
+        {
+          "title": "draft",
+          "type": "string"
+        }
+      ],
+      "data": {
+        "system": "You are the @cinatra-ai/author-agent for Cinatra OAS Flow 26.1.0. Follow the agent-authoring methodology delivered via the agent-authoring skill. Emit {\"draft\":{\u2026}} ONLY \u2014 wrap-object required (DataFlowEdge extracts `draft`).",
+        "user": "Author a Cinatra agent extension draft from the following spec. Emit a JSON object {\"draft\":{...}} per the agent-authoring methodology.\n\npackageSlug: {{ packageSlug }}\n\nspec:\n{{ spec }}",
+        "agent_id": "author-agent",
+        "agent_run_id": "{{ agent_run_id }}",
+        "cinatra_llm": {
+          "preferredProvider": "openai",
+          "preferredModel": "gpt-5.5"
+        }
+      },
+      "url": "{{CINATRA_BASE_URL}}/api/llm-bridge",
+      "http_method": "POST"
+    },
+    "end": {
+      "component_type": "EndNode",
+      "id": "end",
+      "name": "End",
+      "outputs": [
+        {
+          "title": "draft",
+          "type": "string"
+        }
+      ]
+    }
+  }
+}
