@@ -1,6 +1,6 @@
 {
   "name": "@cinatra-ai/author-agent",
-  "version": "0.1.3",
+  "version": "0.1.0",
   "license": "Apache-2.0",
   "description": "Author agent — owns agent-authoring methodology for the Cinatra agent-creation pipeline, pins Anthropic claude-opus-4-7, supports the typed-artifact dispatch contract, and ships as a real extension with skills/.",
   "type": "module",
