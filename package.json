@@ -21,6 +21,9 @@
     "riskLevel": "low",
     "hasApprovalGates": true,
     "toolAccess": [],
-    "ownerOrgId": null
+    "ownerOrgId": null,
+    "roles": [
+      "agent-author"
+    ]
   }
 }
