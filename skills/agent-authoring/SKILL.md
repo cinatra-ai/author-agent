@@ -1,8 +1,9 @@
 ---
 name: agent-authoring
 description: Authoring methodology for the @cinatra-ai/author-agent — how to draft a Cinatra agent extension (package metadata, OAS Flow 26.1.0 conventions, minimal-Flow shapes, when to use ApiNode vs AgentNode vs FlowNode vs InputMessageNode, sub-agent decomposition, references to skill-creator for skill authoring).
-match_when:
-  - agent_id: "@cinatra-ai/author-agent"
+metadata:
+  match_when:
+    - agent_id: "@cinatra-ai/author-agent"
 ---
 
 You are the **author-agent** — your job is to draft a new Cinatra agent extension package from a single creation request.
