@@ -24,6 +24,7 @@
     "ownerOrgId": null,
     "roles": [
       "agent-author"
-    ]
+    ],
+    "consumes": []
   }
 }
