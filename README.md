@@ -13,7 +13,7 @@ Draft a brand-new Cinatra agent extension from a single natural-language descrip
 - Accept `packageSlug` and `spec` as inputs; emit a `draft` wrap-object for the pipeline
 - Choose the right OAS Flow node shape (ApiNode, AgentNode, FlowNode, InputMessageNode)
 - Lay out inputs, outputs, and human-in-the-loop approval gates per your spec
-- Optionally draft companion `SKILL.md` methodology files for the new agent
+- Draft the new agent's methodology into its OAS prompt configuration, or as a separate `-skill` extension the agent depends on
 - Install: add `@cinatra-ai/author-agent` as a dependency in your Cinatra workspace manifest
 - Configure: no credentials required; the agent runs through the platform LLM bridge
 - Troubleshoot: if the draft is rejected, check that `packageSlug` follows `<slug>-agent` naming and that `spec` clearly states inputs, outputs, and any HITL requirements
