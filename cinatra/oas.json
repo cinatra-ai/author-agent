@@ -13,11 +13,13 @@
   "inputs": [
     {
       "title": "agent_run_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "title": "packageSlug",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "title": "spec",
@@ -135,11 +137,13 @@
       "inputs": [
         {
           "title": "agent_run_id",
-          "type": "string"
+          "type": "string",
+          "default": ""
         },
         {
           "title": "packageSlug",
-          "type": "string"
+          "type": "string",
+          "default": ""
         },
         {
           "title": "spec",
@@ -149,11 +153,13 @@
       "outputs": [
         {
           "title": "agent_run_id",
-          "type": "string"
+          "type": "string",
+          "default": ""
         },
         {
           "title": "packageSlug",
-          "type": "string"
+          "type": "string",
+          "default": ""
         },
         {
           "title": "spec",
@@ -173,7 +179,8 @@
         },
         {
           "title": "packageSlug",
-          "type": "string"
+          "type": "string",
+          "default": ""
         },
         {
           "title": "spec",
